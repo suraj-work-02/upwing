@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import "lenis/dist/lenis.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -19,16 +20,20 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     lenis.on("scroll", ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
+    // Keep a stable reference so we remove the exact callback we added.
+    const raf = (time: number) => {
       lenis.raf(time * 1000);
-    });
+    };
 
+    gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
+    // Recalculate ScrollTrigger positions once Lenis is driving the scroll.
+    ScrollTrigger.refresh();
+
     return () => {
-      gsap.ticker.remove((time) => {
-        lenis.raf(time * 1000);
-      });
+      gsap.ticker.remove(raf);
+      lenis.off("scroll", ScrollTrigger.update);
       lenis.destroy();
     };
   }, []);

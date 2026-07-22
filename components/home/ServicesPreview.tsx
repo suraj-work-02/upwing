@@ -1,5 +1,11 @@
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
 import Link from "next/link";
-import { FadeIn } from "@/components/motion/FadeIn";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
@@ -52,11 +58,217 @@ const services = [
   },
 ];
 
-export function ServicesPreview() {
+// Visual position of a card given its rank in the stack (0 = front).
+const PEEK_Y = 22; // how much each card behind peeks upward
+const STEP_SCALE = 0.05; // how much each card behind shrinks
+
+function slot(rank: number) {
+  return {
+    y: -rank * PEEK_Y,
+    scale: 1 - rank * STEP_SCALE,
+    opacity: rank <= 2 ? 1 - rank * 0.12 : 0,
+    zIndex: services.length - rank,
+  };
+}
+
+function StackCard({ svc }: { svc: (typeof services)[0] }) {
   return (
-    <section style={{ padding: "100px 28px" }}>
-      <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 12px" }}>
-        <FadeIn>
+    <div
+      className="uw-svc uw-glossy specialty-stack-card"
+      style={{
+        position: "absolute",
+        top: "50%",
+        left: 0,
+        right: 0,
+        margin: "0 auto",
+        width: "100%",
+        maxWidth: 920,
+        background: svc.bg,
+        boxShadow: "0 30px 70px rgba(0,0,0,0.22)",
+        display: "grid",
+        gridTemplateColumns: "minmax(0, 0.9fr) minmax(0, 1.1fr)",
+        gap: 32,
+        alignItems: "center",
+        willChange: "transform, opacity",
+      }}
+    >
+      <div
+        style={{
+          borderRadius: 18,
+          overflow: "hidden",
+          background: "rgba(255,255,255,0.35)",
+          aspectRatio: "4 / 3",
+          position: "relative",
+        }}
+      >
+        <img
+          src={svc.img}
+          alt={svc.title}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "bottom center",
+          }}
+        />
+      </div>
+
+      <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+        <span
+          className="uw-pill"
+          style={{
+            background: "#fff",
+            padding: "6px 14px",
+            fontSize: 12,
+            width: "fit-content",
+          }}
+        >
+          {svc.pill}
+        </span>
+
+        <h3 style={{ margin: 0, fontSize: "clamp(22px, 2.4vw, 30px)", fontWeight: 800 }}>
+          {svc.title}
+        </h3>
+
+        <p style={{ margin: 0, fontSize: 15, opacity: 0.75, lineHeight: 1.6 }}>
+          {svc.description}
+        </p>
+
+        <ul style={{ padding: 0, margin: 0, gap: 9 }}>
+          {svc.items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+
+        <Link
+          href={svc.href}
+          className="uw-pill uw-btn-steel"
+          style={{
+            padding: "10px 18px",
+            fontSize: 13,
+            width: "fit-content",
+            marginTop: 6,
+          }}
+        >
+          {svc.cta}
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export function ServicesPreview() {
+  const outerRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const outer = outerRef.current;
+    const sticky = stickyRef.current;
+    if (!outer || !sticky) return;
+
+    const ctx = gsap.context(() => {
+      const cardEls = gsap.utils.toArray<HTMLDivElement>(
+        ".specialty-stack-card",
+      );
+      const n = cardEls.length;
+
+      // Initial stacked state: card i starts at rank i.
+      // yPercent:-50 keeps every card vertically centered in the deck; the
+      // per-rank peek offset is applied on top via `y`.
+      cardEls.forEach((el, i) => {
+        gsap.set(el, { ...slot(i), yPercent: -50 });
+      });
+
+      // `order[0]` is the index of the card currently at the front.
+      const order = cardEls.map((_, i) => i);
+
+      const totalScrollHeight = () => n * window.innerHeight * 0.85;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: outer,
+          start: "top top",
+          end: () => `+=${totalScrollHeight()}`,
+          pin: sticky,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          scrub: 1,
+          snap: {
+            snapTo: "labels",
+            duration: { min: 0.25, max: 0.6 },
+            delay: 0,
+            ease: "power1.inOut",
+          },
+        },
+      });
+
+      tl.addLabel("step-0");
+      tl.to({}, { duration: 1 });
+
+      // Each step sends the current front card to the back of the deck and
+      // brings the next card forward. n-1 steps reveals every card once.
+      for (let step = 0; step < n - 1; step++) {
+        const frontIdx = order.shift() as number;
+        order.push(frontIdx);
+
+        // Front card tucks to the back of the stack.
+        const backSlot = slot(n - 1);
+        tl.to(cardEls[frontIdx], {
+          ...backSlot,
+          duration: 0.6,
+          ease: "power2.inOut",
+          onStart: () => gsap.set(cardEls[frontIdx], { zIndex: backSlot.zIndex }),
+          onReverseComplete: () =>
+            gsap.set(cardEls[frontIdx], { zIndex: slot(0).zIndex }),
+        });
+
+        // Remaining cards shift forward one rank.
+        order.forEach((cardIdx, rank) => {
+          if (cardIdx === frontIdx) return;
+          const target = slot(rank);
+          tl.to(
+            cardEls[cardIdx],
+            {
+              y: target.y,
+              scale: target.scale,
+              opacity: target.opacity,
+              zIndex: target.zIndex,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
+            "<",
+          );
+        });
+
+        tl.addLabel(`step-${step + 1}`);
+        tl.to({}, { duration: 1 });
+      }
+    }, outer);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div ref={outerRef} style={{ position: "relative" }}>
+      <div
+        ref={stickyRef}
+        style={{
+          height: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            padding: "56px 40px 0",
+            maxWidth: 1200,
+            margin: "0 auto",
+            width: "100%",
+            boxSizing: "border-box",
+          }}
+        >
           <div
             style={{
               fontSize: 13,
@@ -73,93 +285,37 @@ export function ServicesPreview() {
               fontWeight: 800,
               letterSpacing: "-0.02em",
               maxWidth: 600,
-              margin: "0 0 34px",
+              margin: 0,
             }}
           >
             Three ways we move people and businesses forward
           </h2>
-        </FadeIn>
+        </div>
 
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: 20,
+            flex: 1,
+            position: "relative",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "40px 28px",
           }}
         >
-          {services.map((svc, i) => (
-            <FadeIn key={svc.pill} delay={i * 120}>
-              <div
-                className="uw-svc uw-glossy"
-                style={{ background: svc.bg, height: "100%" }}
-              >
-                {/* Illustration */}
-                <div
-                  style={{
-                    width: "100%",
-                    aspectRatio: "4 / 3",
-                    borderRadius: 14,
-                    overflow: "hidden",
-                    background: "rgba(255,255,255,0.3)",
-                    marginBottom: 12,
-                    position: "relative",
-                  }}
-                >
-                  <img
-                    src={svc.img}
-                    alt={svc.title}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      objectPosition: "bottom center",
-                    }}
-                  />
-                </div>
-
-                <span
-                  className="uw-pill"
-                  style={{
-                    background: "#fff",
-                    padding: "6px 14px",
-                    fontSize: 12,
-                    width: "fit-content",
-                  }}
-                >
-                  {svc.pill}
-                </span>
-
-                <h3 style={{ margin: 0, fontSize: 22, fontWeight: 800 }}>
-                  {svc.title}
-                </h3>
-
-                <p style={{ margin: 0, fontSize: 14, opacity: 0.75 }}>
-                  {svc.description}
-                </p>
-
-                <ul className="uw-svc" style={{ padding: 0, gap: 9 }}>
-                  {svc.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-
-                <Link
-                  href={svc.href}
-                  className="uw-pill uw-btn-steel"
-                  style={{
-                    padding: "10px 18px",
-                    fontSize: 13,
-                    width: "fit-content",
-                    marginTop: "auto",
-                  }}
-                >
-                  {svc.cta}
-                </Link>
-              </div>
-            </FadeIn>
-          ))}
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              maxWidth: 920,
+              height: "min(70vh, 520px)",
+            }}
+          >
+            {services.map((svc) => (
+              <StackCard key={svc.pill} svc={svc} />
+            ))}
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

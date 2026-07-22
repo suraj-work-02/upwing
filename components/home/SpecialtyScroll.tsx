@@ -299,21 +299,35 @@ export function SpecialtyScroll() {
         }
       });
 
-      const totalScrollHeight = cards.length * window.innerHeight * 1.1;
+      // One "viewport" worth of scroll distance is allocated per card so that
+      // each card requires a full, deliberate scroll to advance.
+      const totalScrollHeight = () => cards.length * window.innerHeight;
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: outer,
           start: "top top",
-          end: () => `+=${totalScrollHeight}`,
+          end: () => `+=${totalScrollHeight()}`,
           pin: sticky,
           pinSpacing: true,
           anticipatePin: 1,
-          scrub: 0.65,
+          invalidateOnRefresh: true,
+          scrub: 1,
+          // Snap to the label of each card so a scroll gesture always settles
+          // on exactly one card instead of skipping through several.
+          snap: {
+            snapTo: "labels",
+            duration: { min: 0.25, max: 0.6 },
+            delay: 0,
+            ease: "power1.inOut",
+          },
         },
       });
 
-      tl.to({}, { duration: 1.5 });
+      // Resting point of the first card.
+      tl.addLabel("card-0");
+      // Hold so the first card stays fully visible for a beat before advancing.
+      tl.to({}, { duration: 1 });
 
       cardEls.forEach((el, i) => {
         if (i < cardEls.length - 1) {
@@ -322,7 +336,7 @@ export function SpecialtyScroll() {
             opacity: 0,
             y: -44,
             scale: 0.94,
-            duration: 0.7,
+            duration: 0.6,
             pointerEvents: "none",
             ease: "power2.inOut",
           }).to(
@@ -331,14 +345,17 @@ export function SpecialtyScroll() {
               opacity: 1,
               y: 0,
               scale: 1,
-              duration: 0.7,
+              duration: 0.6,
               pointerEvents: "auto",
               ease: "power2.inOut",
             },
-            "-=0.25",
+            "-=0.2",
           );
 
-          tl.to({}, { duration: 1.3 });
+          // Resting point of the card we just transitioned to.
+          tl.addLabel(`card-${i + 1}`);
+          // Hold so this card stays fully visible before the next transition.
+          tl.to({}, { duration: 1 });
         }
       });
     }, outer);
