@@ -59,7 +59,7 @@ const services = [
 ];
 
 // Visual position of a card given its rank in the stack (0 = front).
-const PEEK_Y = 22; // how much each card behind peeks upward
+const PEEK_Y = 24; // how much each card behind peeks upward
 const STEP_SCALE = 0.05; // how much each card behind shrinks
 
 function slot(rank: number) {
@@ -82,7 +82,9 @@ function StackCard({ svc }: { svc: (typeof services)[0] }) {
         right: 0,
         margin: "0 auto",
         width: "100%",
+        height: "100%",
         maxWidth: 920,
+        transformOrigin: "top center",
         background: svc.bg,
         boxShadow: "0 30px 70px rgba(0,0,0,0.22)",
         display: "grid",
@@ -126,7 +128,13 @@ function StackCard({ svc }: { svc: (typeof services)[0] }) {
           {svc.pill}
         </span>
 
-        <h3 style={{ margin: 0, fontSize: "clamp(22px, 2.4vw, 30px)", fontWeight: 800 }}>
+        <h3
+          style={{
+            margin: 0,
+            fontSize: "clamp(22px, 2.4vw, 30px)",
+            fontWeight: 800,
+          }}
+        >
           {svc.title}
         </h3>
 
@@ -176,7 +184,11 @@ export function ServicesPreview() {
       // yPercent:-50 keeps every card vertically centered in the deck; the
       // per-rank peek offset is applied on top via `y`.
       cardEls.forEach((el, i) => {
-        gsap.set(el, { ...slot(i), yPercent: -50 });
+        gsap.set(el, {
+          ...slot(i),
+          yPercent: -50,
+          transformOrigin: "top center",
+        });
       });
 
       // `order[0]` is the index of the card currently at the front.
@@ -206,26 +218,36 @@ export function ServicesPreview() {
       tl.addLabel("step-0");
       tl.to({}, { duration: 1 });
 
-      // Each step sends the current front card to the back of the deck and
-      // brings the next card forward. n-1 steps reveals every card once.
+      // Each step swipes the front card off to the right (clear / Tinder-style)
+      // and brings the next card forward. n-1 steps reveals every card once.
       for (let step = 0; step < n - 1; step++) {
         const frontIdx = order.shift() as number;
-        order.push(frontIdx);
 
-        // Front card tucks to the back of the stack.
-        const backSlot = slot(n - 1);
+        // Front card swipes off to the right and disappears.
         tl.to(cardEls[frontIdx], {
-          ...backSlot,
+          x: "140%",
+          rotation: 18,
+          opacity: 0,
+          scale: 0.9,
           duration: 0.6,
           ease: "power2.inOut",
-          onStart: () => gsap.set(cardEls[frontIdx], { zIndex: backSlot.zIndex }),
-          onReverseComplete: () =>
-            gsap.set(cardEls[frontIdx], { zIndex: slot(0).zIndex }),
+          onStart: () => {
+            gsap.set(cardEls[frontIdx], {
+              zIndex: services.length + 1,
+              pointerEvents: "none",
+            });
+          },
+          onReverseComplete: () => {
+            gsap.set(cardEls[frontIdx], {
+              zIndex: slot(0).zIndex,
+              pointerEvents: "auto",
+            });
+            gsap.set(cardEls[frontIdx], { x: 0, rotation: 0, ...slot(0) });
+          },
         });
 
         // Remaining cards shift forward one rank.
         order.forEach((cardIdx, rank) => {
-          if (cardIdx === frontIdx) return;
           const target = slot(rank);
           tl.to(
             cardEls[cardIdx],
@@ -250,7 +272,7 @@ export function ServicesPreview() {
   }, []);
 
   return (
-    <div ref={outerRef} style={{ position: "relative" }}>
+    <div ref={outerRef} style={{ position: "relative", overflow: "hidden" }}>
       <div
         ref={stickyRef}
         style={{
@@ -258,6 +280,7 @@ export function ServicesPreview() {
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
+          clipPath: "inset(0)",
         }}
       >
         <div
