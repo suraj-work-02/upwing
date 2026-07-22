@@ -42,7 +42,7 @@ export function CtaBand() {
                   lineHeight: 1.6,
                 }}
               >
-                Book a free 20-minute call — we&apos;ll show you exactly how it
+                Book a free 20-minute call, we&apos;ll show you exactly how it
                 applies to your situation, whether you&apos;re hiring or job
                 hunting.
               </p>

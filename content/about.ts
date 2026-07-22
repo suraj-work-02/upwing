@@ -4,11 +4,11 @@ export const about = {
     "Companies need the right people. Professionals need a path into the right companies. UpWing works both sides of that equation with direct support and measurable outcomes.",
   mission: {
     title: "Our Mission",
-    body: "To help companies hire the right people faster and help professionals land real roles—with honest coaching, clear plans, and results you can measure.",
+    body: "To help companies hire the right people faster and help professionals land real roles with honest coaching, clear plans, and results you can measure.",
   },
   vision: {
     title: "Our Vision",
-    body: "To be the most trusted name in talent for both sides of the hiring equation—known for closing the gap between where clients are and where they want to be.",
+    body: "To be the most trusted name in talent for both sides of the hiring equation known for closing the gap between where clients are and where they want to be.",
   },
   approach: {
     title: "Our Approach",
@@ -51,7 +51,7 @@ export const about = {
       year: "2014",
       title: "Founded",
       description:
-        "UpWing launched with a focus on recruitment—helping companies find the right candidates without traditional agency waste.",
+        "UpWing launched with a focus on recruitment-helping companies find the right candidates without traditional agency waste.",
     },
     {
       year: "2016",
@@ -81,14 +81,14 @@ export const about = {
       year: "2024",
       title: "Platform growth",
       description:
-        "A decade in—continuing to refine AI-assisted workflows while keeping human judgment at the center.",
+        "A decade in-continuing to refine AI-assisted workflows while keeping human judgment at the center.",
     },
   ],
   why: [
     {
       title: "Proven track record",
       description:
-        "Hundreds of client engagements with documented, measurable outcomes—not process theater.",
+        "Hundreds of client engagements with documented, measurable outcomes-not process theater.",
     },
     {
       title: "Industry depth",

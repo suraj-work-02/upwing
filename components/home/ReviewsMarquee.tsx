@@ -1,4 +1,4 @@
-// Pravatar.cc — real human photos, free, no API key, pinned by ?img=ID (1–70)
+// Pravatar.cc - real human photos, free, no API key, pinned by ?img=ID (1–70)
 const candidateReviews = [
   {
     name: "J. Martinez",
@@ -13,7 +13,7 @@ const candidateReviews = [
     name: "R. Okafor",
     role: "Placed as Product Designer",
     quote:
-      "The coaching alone was worth it — resume, portfolio, mock interviews, all of it.",
+      "The coaching alone was worth it, resume, portfolio, mock interviews, all of it.",
     bg: "#f9dfae",
     avatarColor: "#ee9922",
     avatarImg: 15, // professional young man
@@ -43,7 +43,7 @@ const companyReviews = [
     name: "Head of Talent",
     role: "Series B SaaS company",
     quote:
-      "UpWing sent us a shortlist we could actually decide from — no wading through 40 resumes.",
+      "UpWing sent us a shortlist we could actually decide from, no wading through 40 resumes.",
     bg: "#fff",
     avatarColor: "#3b82f6",
     avatarImg: 11, // professional executive woman
@@ -161,7 +161,7 @@ export function ReviewsMarquee() {
           Candidates placed. Companies staffed.
         </h2>
 
-        {/* Row 1 — scrolls left */}
+        {/* Row 1 - scrolls left */}
         <div className="uw-marquee" style={{ marginBottom: 16 }}>
           <div className="uw-track uw-track-l-slow">
             {row1.map((review, i) => (
@@ -170,7 +170,7 @@ export function ReviewsMarquee() {
           </div>
         </div>
 
-        {/* Row 2 — scrolls right */}
+        {/* Row 2 - scrolls right */}
         <div className="uw-marquee">
           <div className="uw-track uw-track-r-slow">
             {row2.map((review, i) => (

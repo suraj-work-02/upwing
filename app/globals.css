@@ -2,12 +2,12 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════
-   UPWING — Warm Coral Theme
+   UPWING - Warm Coral Theme
    Matching UpWing Homepage.dc.html
    ═══════════════════════════════════════════ */
 
 :root {
-  /* Core palette — warm dark */
+  /* Core palette - warm dark */
   --bg: #0e0d10;
   --bg-warm: #15100f;
   --bg-surface: #141112;
@@ -16,7 +16,7 @@
   --border: rgba(255, 255, 255, 0.08);
   --border-hover: rgba(255, 255, 255, 0.16);
 
-  /* Accent — Coral */
+  /* Accent - Coral */
   --coral: #ff6b57;
   --coral-light: #ff9481;
   --coral-dark: #ff5c40;

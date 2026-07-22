@@ -6,11 +6,11 @@ import gsap from "gsap";
 import { SpecialtyScroll } from "@/components/home/SpecialtyScroll";
 
 export function Hero() {
-  const pillRef   = useRef<HTMLDivElement>(null);
-  const h1Ref     = useRef<HTMLHeadingElement>(null);
-  const paraRef   = useRef<HTMLParagraphElement>(null);
-  const ctaRef    = useRef<HTMLDivElement>(null);
-  const charRef   = useRef<HTMLImageElement>(null);
+  const pillRef = useRef<HTMLDivElement>(null);
+  const h1Ref = useRef<HTMLHeadingElement>(null);
+  const paraRef = useRef<HTMLParagraphElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const charRef = useRef<HTMLImageElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -24,7 +24,7 @@ export function Hero() {
           stagger: 0.12,
           ease: "power3.out",
           delay: 0.1,
-        }
+        },
       );
 
       gsap.fromTo(
@@ -37,7 +37,7 @@ export function Hero() {
           duration: 1.1,
           ease: "power3.out",
           delay: 0.25,
-        }
+        },
       );
 
       // Subtle floating loop on the character
@@ -130,7 +130,7 @@ export function Hero() {
                 }}
               >
                 UpWing pairs growing companies with the talent they need and
-                gives ambitious professionals a real shot at their next role —
+                gives ambitious professionals a real shot at their next role,
                 one focused team, two outcomes.
               </p>
 
@@ -147,14 +147,22 @@ export function Hero() {
                 <Link
                   href="/services/career-development"
                   className="uw-pill uw-btn-coral"
-                  style={{ padding: "14px 26px", fontSize: 15, fontWeight: 800 }}
+                  style={{
+                    padding: "14px 26px",
+                    fontSize: 15,
+                    fontWeight: 800,
+                  }}
                 >
                   For Job Seekers →
                 </Link>
                 <Link
                   href="/services/recruitment"
                   className="uw-pill uw-glass"
-                  style={{ padding: "14px 26px", fontSize: 15, fontWeight: 700 }}
+                  style={{
+                    padding: "14px 26px",
+                    fontSize: 15,
+                    fontWeight: 700,
+                  }}
                 >
                   For Companies
                 </Link>
@@ -187,7 +195,7 @@ export function Hero() {
         </div>
       </section>
 
-      {/* 2. Our Specialty Section — GSAP scroll-driven */}
+      {/* 2. Our Specialty Section - GSAP scroll-driven */}
       <SpecialtyScroll />
     </>
   );

@@ -5,7 +5,7 @@ export const services = [
     shortTitle: "Recruitment",
     audience: "For Companies",
     summary:
-      "End-to-end talent acquisition that moves faster than traditional hiring—without sacrificing who you bring in.",
+      "End-to-end talent acquisition that moves faster than traditional hiring-without sacrificing who you bring in.",
     description:
       "We help modern teams hire the right people faster and at lower cost. From market mapping to sourcing and hiring automation, every engagement is built around how your team actually works.",
     href: "/services/recruitment",
@@ -47,7 +47,7 @@ export const services = [
     summary:
       "Direct coaching and hands-on placement support to help you land a role at a top company with a real plan.",
     description:
-      "Whether you are an international graduate or a professional ready for the next step, we combine career strategy, interview readiness, and placement support so you move with clarity—not guesswork.",
+      "Whether you are an international graduate or a professional ready for the next step, we combine career strategy, interview readiness, and placement support so you move with clarity not guesswork.",
     href: "/services/career-development",
     cta: "Start Your Journey",
     highlights: ["Career Coaching", "Interview Prep", "Placement Support"],
@@ -60,7 +60,7 @@ export const services = [
       {
         title: "Interview Preparation",
         description:
-          "Practice that mirrors real interviews—behavioral, technical, and culture fit—so you show up ready.",
+          "Practice that mirrors real interviews-behavioral, technical, and culture fit-so you show up ready.",
       },
       {
         title: "Placement Support",

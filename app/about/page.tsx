@@ -4,6 +4,7 @@ import { site } from "@/content/site";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { CtaBand } from "@/components/home/CtaBand";
 import { PageHero } from "@/components/ui/PageHero";
+import { IndustriesStrip } from "@/components/about/IndustriesStrip";
 
 export const metadata: Metadata = {
   title: "About",
@@ -322,6 +323,9 @@ export default function AboutPage() {
           </FadeIn>
         </div>
       </section>
+
+      {/* 3.5 Generalist Reach (Industries Strip) */}
+      <IndustriesStrip />
 
       {/* 4. Why UpWing Section */}
       <section style={{ padding: "100px 28px" }}>

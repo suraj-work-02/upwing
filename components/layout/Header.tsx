@@ -118,7 +118,7 @@ export function Header() {
               snapToActive();
             }}
           >
-            {/* Sliding hover pill — only visible when scrolled */}
+            {/* Sliding hover pill - only visible when scrolled */}
             <div
               ref={pillRef}
               aria-hidden

@@ -13,7 +13,7 @@ const industries = [
 
 export function IndustriesStrip() {
   return (
-    <section style={{ padding: "80px 28px" }}>
+    <section style={{ padding: "100px 28px" }}>
       <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 12px" }}>
         <FadeIn>
           <div

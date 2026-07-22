@@ -15,7 +15,7 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Let's talk about your next hire—or your next role"
+        title="Let's talk about your next hire or your next role"
         description="Tell us what you are working on. We will follow up with a clear next step."
       />
 

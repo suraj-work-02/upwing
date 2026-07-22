@@ -9,7 +9,7 @@ import { CtaBand } from "@/components/home/CtaBand";
 export const metadata: Metadata = {
   title: "Recruitment & Talent Solutions",
   description:
-    "End-to-end talent acquisition for modern teams—sourcing, market mapping, and hiring automation.",
+    "End-to-end talent acquisition for modern teams sourcing, market mapping, and hiring automation.",
 };
 
 const outcomeColors = ["#f7c9c2", "#f9dfae", "#dcd6f7"];

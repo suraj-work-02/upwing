@@ -52,7 +52,7 @@ export function ContactForm() {
           Message received
         </h2>
         <p style={{ fontSize: 15, opacity: 0.75, lineHeight: 1.6 }}>
-          Thanks for reaching out. This is a demo form—no email was sent. In
+          Thanks for reaching out. This is a demo form-no email was sent. In
           production, your message would go to our team.
         </p>
         <button
