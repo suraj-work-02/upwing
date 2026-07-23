@@ -22,7 +22,7 @@ const services = [
     ],
     cta: "Explore Staffing →",
     href: "/services/recruitment",
-    img: "/assets/staffing-solution.png",
+    img: "/assets/staffing.png",
   },
   {
     bg: "#f9dfae",
@@ -38,7 +38,7 @@ const services = [
     ],
     cta: "Explore Recruitment →",
     href: "/services/recruitment",
-    img: "/assets/recruitement-and-talent-acquisition.png",
+    img: "/assets/recruitment.png",
   },
   {
     bg: "#dcd6f7",
@@ -54,7 +54,7 @@ const services = [
     ],
     cta: "Explore Career Coaching →",
     href: "/services/career-development",
-    img: "/assets/career-coaching-and-developement.png",
+    img: "/assets/career.png",
   },
 ];
 
@@ -98,7 +98,7 @@ function StackCard({ svc }: { svc: (typeof services)[0] }) {
         style={{
           borderRadius: 18,
           overflow: "hidden",
-          background: "rgba(255,255,255,0.35)",
+          background: "transparent",
           aspectRatio: "4 / 3",
           position: "relative",
         }}
