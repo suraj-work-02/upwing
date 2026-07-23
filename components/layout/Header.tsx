@@ -72,14 +72,14 @@ export function Header() {
             "hidden md:flex mx-auto items-center justify-between transition-all duration-500 ease-in-out",
             scrolled
               ? "max-w-[1400px] mt-4 mx-6 xl:mx-auto xl:max-w-[1400px] px-0 rounded-[980px]"
-              : "max-w-[1400px] px-10 mt-0 rounded-none",
+              : "max-w-[1400px] px-10 mt-0 rounded-none mx-6 xl:mx-auto",
           )}
           style={{
             background: scrolled ? "rgba(22, 22, 24, 0.55)" : "transparent",
             border: scrolled
               ? "1px solid rgba(255,255,255,0.07)"
               : "1px solid transparent",
-            padding: scrolled ? "8px 8px 8px 24px" : "22px 0",
+            padding: scrolled ? "8px 8px 8px 24px" : "22px 40px",
             backdropFilter: scrolled ? "blur(24px)" : "none",
             WebkitBackdropFilter: scrolled ? "blur(24px)" : "none",
             boxShadow: scrolled

@@ -846,24 +846,27 @@ a:hover {
 @media (max-width: 680px) {
   .svc-stack-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
   }
 
   .svc-stack-image {
-    aspect-ratio: 16 / 9 !important;
-    max-height: 200px;
+    aspect-ratio: auto !important;
+    height: 180px;
+    max-height: 30vh;
   }
 
   .services-stack-header {
-    padding: 40px 20px 0 !important;
+    padding: 30px 20px 0 !important;
   }
 
   .services-stack-container {
-    height: min(80vh, 560px) !important;
+    height: min(85vh, 620px) !important;
   }
 
   .specialty-stack-card {
     padding: 20px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
   }
 }
 
@@ -930,12 +933,15 @@ a:hover {
 
 .mobile-nav-overlay {
   position: fixed;
-  inset-x: 0;
-  top: 0;
+  inset-y: 0;
+  left: 0;
+  width: 80%;
+  max-width: 340px;
   z-index: 49;
   padding-top: 70px;
-  min-height: 100dvh;
-  background: rgba(14, 13, 16, 0.97);
+  background: rgba(14, 13, 16, 0.98);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   overflow-y: auto;

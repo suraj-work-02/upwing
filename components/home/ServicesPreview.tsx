@@ -107,8 +107,8 @@ function StackCard({ svc }: { svc: (typeof services)[0] }) {
             style={{
               width: "100%",
               height: "100%",
-              objectFit: "cover",
-              objectPosition: "bottom center",
+              objectFit: "contain",
+              objectPosition: "center",
             }}
           />
         </div>
