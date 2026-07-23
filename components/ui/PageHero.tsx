@@ -12,7 +12,7 @@ export function PageHero({
   cta?: { href: string; label: string };
 }) {
   return (
-    <section style={{ padding: "140px 28px 60px" }}>
+    <section className="page-hero-section" style={{ padding: "140px 28px 60px" }}>
       <div
         style={{
           width: "100%",

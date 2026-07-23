@@ -3,10 +3,11 @@ import { FadeIn } from "@/components/motion/FadeIn";
 
 export function CtaBand() {
   return (
-    <section style={{ padding: "60px 28px 80px" }}>
+    <section className="cta-band-section" style={{ padding: "60px 28px 80px" }}>
       <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 12px" }}>
         <FadeIn>
           <div
+            className="cta-band-inner"
             style={{
               background: "linear-gradient(180deg, #000, #0a0b0d)",
               color: "#fff",

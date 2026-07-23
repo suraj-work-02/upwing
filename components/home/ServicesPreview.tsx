@@ -87,79 +87,78 @@ function StackCard({ svc }: { svc: (typeof services)[0] }) {
         transformOrigin: "top center",
         background: svc.bg,
         boxShadow: "0 30px 70px rgba(0,0,0,0.22)",
-        display: "grid",
-        gridTemplateColumns: "minmax(0, 0.9fr) minmax(0, 1.1fr)",
-        gap: 32,
-        alignItems: "center",
         willChange: "transform, opacity",
       }}
     >
-      <div
-        style={{
-          borderRadius: 18,
-          overflow: "hidden",
-          background: "transparent",
-          aspectRatio: "4 / 3",
-          position: "relative",
-        }}
-      >
-        <img
-          src={svc.img}
-          alt={svc.title}
+      <div className="svc-stack-grid">
+        <div
+          className="svc-stack-image"
           style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "bottom center",
-          }}
-        />
-      </div>
-
-      <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-        <span
-          className="uw-pill"
-          style={{
-            background: "#fff",
-            padding: "6px 14px",
-            fontSize: 12,
-            width: "fit-content",
+            borderRadius: 18,
+            overflow: "hidden",
+            background: "transparent",
+            aspectRatio: "4 / 3",
+            position: "relative",
           }}
         >
-          {svc.pill}
-        </span>
+          <img
+            src={svc.img}
+            alt={svc.title}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "bottom center",
+            }}
+          />
+        </div>
 
-        <h3
-          style={{
-            margin: 0,
-            fontSize: "clamp(22px, 2.4vw, 30px)",
-            fontWeight: 800,
-          }}
-        >
-          {svc.title}
-        </h3>
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          <span
+            className="uw-pill"
+            style={{
+              background: "#fff",
+              padding: "6px 14px",
+              fontSize: 12,
+              width: "fit-content",
+            }}
+          >
+            {svc.pill}
+          </span>
 
-        <p style={{ margin: 0, fontSize: 15, opacity: 0.75, lineHeight: 1.6 }}>
-          {svc.description}
-        </p>
+          <h3
+            style={{
+              margin: 0,
+              fontSize: "clamp(22px, 2.4vw, 30px)",
+              fontWeight: 800,
+            }}
+          >
+            {svc.title}
+          </h3>
 
-        <ul style={{ padding: 0, margin: 0, gap: 9 }}>
-          {svc.items.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+          <p style={{ margin: 0, fontSize: 15, opacity: 0.75, lineHeight: 1.6 }}>
+            {svc.description}
+          </p>
 
-        <Link
-          href={svc.href}
-          className="uw-pill uw-btn-steel"
-          style={{
-            padding: "10px 18px",
-            fontSize: 13,
-            width: "fit-content",
-            marginTop: 6,
-          }}
-        >
-          {svc.cta}
-        </Link>
+          <ul style={{ padding: 0, margin: 0, gap: 9 }}>
+            {svc.items.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+
+          <Link
+            href={svc.href}
+            className="uw-pill uw-btn-steel"
+            style={{
+              padding: "10px 18px",
+              fontSize: 13,
+              width: "fit-content",
+              marginTop: 6,
+            }}
+          >
+            {svc.cta}
+          </Link>
+        </div>
       </div>
     </div>
   );
@@ -284,6 +283,7 @@ export function ServicesPreview() {
         }}
       >
         <div
+          className="services-stack-header"
           style={{
             padding: "56px 40px 0",
             maxWidth: 1200,
@@ -326,6 +326,7 @@ export function ServicesPreview() {
           }}
         >
           <div
+            className="services-stack-container"
             style={{
               position: "relative",
               width: "100%",

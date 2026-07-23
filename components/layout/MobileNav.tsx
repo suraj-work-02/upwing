@@ -15,7 +15,7 @@ export function MobileNav({
   return (
     <div
       id="mobile-nav"
-      className="border-t border-border bg-bg-card/95 backdrop-blur-2xl md:hidden"
+      className="mobile-nav-overlay md:hidden"
     >
       <nav className="flex flex-col gap-1 px-6 py-6" aria-label="Mobile">
         {site.nav.map((item) => (

@@ -76,16 +76,11 @@ function CardPanel({
       }}
     >
       <div
-        style={{
-          width: "100%",
-          maxWidth: 1100,
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 48,
-          alignItems: "center",
-        }}
+        className="specialty-panel-grid"
+        style={{ width: "100%", maxWidth: 1100 }}
       >
         <div
+          className="specialty-panel-image"
           style={{
             order: 1,
             borderRadius: 28,
@@ -375,6 +370,7 @@ export function SpecialtyScroll() {
         }}
       >
         <div
+          className="specialty-scroll-header"
           style={{
             padding: "56px 40px 0",
             maxWidth: 1200,

@@ -172,7 +172,7 @@ export function HowItWorks() {
   }, [svgPath]);
 
   return (
-    <section ref={sectionRef} style={{ padding: "100px 28px" }}>
+    <section ref={sectionRef} className="hiw-section" style={{ padding: "100px 28px" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         {/* Heading */}
         <div
@@ -246,6 +246,7 @@ export function HowItWorks() {
           {steps.map((step, i) => (
             <div
               key={step.num}
+              className="hiw-row"
               style={{
                 display: "flex",
                 justifyContent:

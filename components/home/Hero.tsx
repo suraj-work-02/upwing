@@ -58,6 +58,7 @@ export function Hero() {
     <>
       {/* 1. Main Hero Section */}
       <section
+        className="hero-section"
         style={{
           padding: "140px 28px 80px",
           minHeight: "calc(88svh - 80px)",
@@ -73,14 +74,7 @@ export function Hero() {
             padding: "0 12px",
           }}
         >
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1.1fr min(460px, 42%)",
-              gap: 48,
-              alignItems: "center",
-            }}
-          >
+          <div className="hero-grid">
             {/* Left: main content */}
             <div>
               {/* Trust pill */}
@@ -171,6 +165,7 @@ export function Hero() {
 
             {/* Right: character illustration */}
             <div
+              className="hero-char"
               style={{
                 display: "flex",
                 alignItems: "flex-end",

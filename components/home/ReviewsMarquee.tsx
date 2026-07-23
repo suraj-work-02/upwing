@@ -137,7 +137,7 @@ export function ReviewsMarquee() {
   const row2 = [...companyReviews, ...companyReviews];
 
   return (
-    <section style={{ padding: "100px 28px 80px" }}>
+    <section className="reviews-section" style={{ padding: "100px 28px 80px" }}>
       <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 12px" }}>
         <div
           style={{
