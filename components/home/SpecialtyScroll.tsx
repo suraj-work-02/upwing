@@ -311,17 +311,20 @@ export function SpecialtyScroll() {
     <section ref={outerRef} style={{ position: "relative" }}>
       <div
         ref={stickyRef}
+        className="specialty-sticky"
         style={{
           height: "100vh",
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
+          paddingTop: 80,
+          boxSizing: "border-box",
         }}
       >
         <div
           className="specialty-scroll-header"
           style={{
-            padding: "56px 40px 0",
+            padding: "28px 40px 0",
             maxWidth: 1200,
             margin: "0 auto",
             width: "100%",

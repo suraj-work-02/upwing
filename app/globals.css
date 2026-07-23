@@ -812,25 +812,41 @@ a:hover {
 }
 
 @media (max-width: 768px) {
+  .specialty-sticky {
+    padding-top: 62px !important;
+  }
+
   .specialty-panel-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 12px;
   }
 
   .specialty-panel-image {
-    max-width: 280px !important;
+    max-width: 160px !important;
     margin: 0 auto !important;
     aspect-ratio: 1 / 1 !important;
   }
 
   .specialty-scroll-header {
-    padding: 40px 20px 0 !important;
+    padding: 16px 20px 0 !important;
+  }
+
+  /* Make card panel scrollable on small screens so nothing gets cut */
+  .specialty-card-panel {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    align-items: flex-start !important;
+    padding: 0 20px 24px !important;
   }
 }
 
 @media (max-width: 480px) {
   .specialty-panel-grid {
-    gap: 16px;
+    gap: 10px;
+  }
+
+  .specialty-panel-image {
+    max-width: 140px !important;
   }
 }
 
@@ -843,30 +859,84 @@ a:hover {
   align-items: center;
 }
 
+.specialty-stack-card::-webkit-scrollbar {
+  display: none;
+}
+.specialty-stack-card {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @media (max-width: 680px) {
+  /* ── 1. Switch grid to single column ── */
   .svc-stack-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 8px;
   }
 
+  /* ── 2. Header: tighter padding ── */
+  .services-stack-header {
+    padding: 12px 18px 0 !important;
+  }
+
+  /* ── 2b. Sticky: less top padding + remove clip so card bottom shows ── */
+  .services-sticky {
+    padding-top: 62px !important;
+    clip-path: none !important;
+    overflow: visible !important;
+  }
+
+  /* ── 3. Wrapper: flush to top, tight sides ── */
+  .services-stack-wrapper {
+    align-items: flex-start !important;
+    padding: 4px 12px 0 !important;
+    margin-top: 18px;
+  }
+
+  /* ── 4. Stack container: less peek space needed on mobile ── */
+  .services-stack-container {
+    padding-top: 28px !important;
+  }
+
+  /* ── 5. Each card: shrink padding ── */
+  .specialty-stack-card {
+    padding: 12px !important;
+  }
+
+  /* ── 6. Image: shorter so text + button fit ── */
   .svc-stack-image {
     aspect-ratio: auto !important;
-    height: 180px;
-    max-height: 30vh;
+    height: 110px !important;
+    max-height: 18vh !important;
   }
 
-  .services-stack-header {
-    padding: 30px 20px 0 !important;
+  /* ── 7. Title: smaller on mobile ── */
+  .specialty-stack-card h3 {
+    font-size: 18px !important;
+    line-height: 1.3 !important;
   }
 
-  .services-stack-container {
-    height: min(85vh, 620px) !important;
+  /* ── 8. Description: smaller ── */
+  .specialty-stack-card p {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
   }
 
-  .specialty-stack-card {
-    padding: 20px !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
+  /* ── 9. List items: smaller ── */
+  .specialty-stack-card li {
+    font-size: 12px !important;
+  }
+
+  /* ── 10. CTA: tighter ── */
+  .specialty-stack-card .uw-btn-steel {
+    padding: 8px 14px !important;
+    font-size: 12px !important;
+    margin-top: 2px !important;
+  }
+
+  /* ── 11. Text column: reduce gap ── */
+  .specialty-stack-card .svc-stack-grid > div:last-child {
+    gap: 6px !important;
   }
 }
 

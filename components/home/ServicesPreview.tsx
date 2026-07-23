@@ -76,14 +76,10 @@ function StackCard({ svc }: { svc: (typeof services)[0] }) {
     <div
       className="uw-svc uw-glossy specialty-stack-card"
       style={{
-        position: "absolute",
-        top: "50%",
-        left: 0,
-        right: 0,
-        margin: "0 auto",
+        gridArea: "1 / 1",
+        alignSelf: "start",
         width: "100%",
-        height: "100%",
-        maxWidth: 920,
+        height: "auto",
         transformOrigin: "top center",
         background: svc.bg,
         boxShadow: "0 30px 70px rgba(0,0,0,0.22)",
@@ -182,12 +178,9 @@ export function ServicesPreview() {
       const n = cardEls.length;
 
       // Initial stacked state: card i starts at rank i.
-      // yPercent:-50 keeps every card vertically centered in the deck; the
-      // per-rank peek offset is applied on top via `y`.
       cardEls.forEach((el, i) => {
         gsap.set(el, {
           ...slot(i),
-          yPercent: -50,
           transformOrigin: "top center",
         });
       });
@@ -280,18 +273,21 @@ export function ServicesPreview() {
     >
       <div
         ref={stickyRef}
+        className="services-sticky"
         style={{
-          height: "100vh",
+          height: "100svh",
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
           clipPath: "inset(0)",
+          paddingTop: 80,
+          boxSizing: "border-box",
         }}
       >
         <div
           className="services-stack-header"
           style={{
-            padding: "56px 40px 0",
+            padding: "28px 40px 0",
             maxWidth: 1200,
             margin: "0 auto",
             width: "100%",
@@ -322,13 +318,15 @@ export function ServicesPreview() {
         </div>
 
         <div
+          className="services-stack-wrapper"
           style={{
             flex: 1,
             position: "relative",
             display: "flex",
-            alignItems: "center",
+            alignItems: "stretch",
             justifyContent: "center",
             padding: "40px 28px",
+            minHeight: 0,
           }}
         >
           <div
@@ -337,7 +335,8 @@ export function ServicesPreview() {
               position: "relative",
               width: "100%",
               maxWidth: 920,
-              height: "min(70vh, 520px)",
+              display: "grid",
+              paddingTop: 48,
             }}
           >
             {services.map((svc) => (
