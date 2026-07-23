@@ -136,7 +136,9 @@ function StackCard({ svc }: { svc: (typeof services)[0] }) {
             {svc.title}
           </h3>
 
-          <p style={{ margin: 0, fontSize: 15, opacity: 0.75, lineHeight: 1.6 }}>
+          <p
+            style={{ margin: 0, fontSize: 15, opacity: 0.75, lineHeight: 1.6 }}
+          >
             {svc.description}
           </p>
 
@@ -271,7 +273,11 @@ export function ServicesPreview() {
   }, []);
 
   return (
-    <div ref={outerRef} style={{ position: "relative", overflow: "hidden" }}>
+    <section
+      ref={outerRef}
+      style={{ position: "relative", overflow: "hidden" }}
+      className="services-preview-section"
+    >
       <div
         ref={stickyRef}
         style={{
@@ -340,6 +346,6 @@ export function ServicesPreview() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

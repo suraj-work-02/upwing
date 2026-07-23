@@ -29,6 +29,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${plusJakartaSans.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col bg-bg font-sans text-text">
         <SmoothScroll>

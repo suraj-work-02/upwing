@@ -172,7 +172,7 @@ export function HowItWorks() {
   }, [svgPath]);
 
   return (
-    <section ref={sectionRef} className="hiw-section" style={{ padding: "100px 28px" }}>
+    <section ref={sectionRef} className="hiw-section" style={{ padding: "100px 28px", overflow: "hidden" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         {/* Heading */}
         <div
@@ -264,8 +264,8 @@ export function HowItWorks() {
                 }}
                 style={{
                   background: step.bg,
-                  width: 320,
-                  flex: "0 0 320px",
+                  width: "100%",
+                  maxWidth: 320,
                   color: "#1c1c1c",
                   opacity: 0,
                   willChange: "transform, opacity",

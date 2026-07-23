@@ -9,48 +9,31 @@ gsap.registerPlugin(ScrollTrigger);
 
 const cards = [
   {
-    rating: "★ 4.9",
     category: "Staffing",
     title: "Contract & Contract-to-Hire",
     description:
       "Flexible workforce models structured around your timeline. From short-term contracts to full-time conversions.",
     stat: "1,200+ placed",
-    bg: "#f7c9c2",
-    img: "/assets/char-staffing.png",
+    img: "/assets/contract.png",
     href: "/services/recruitment",
   },
   {
-    rating: "★ 4.8",
     category: "Recruitment",
     title: "Talent Sourcing & Market Mapping",
     description:
       "End-to-end sourcing that moves faster than traditional hiring, without cutting corners on quality.",
     stat: "500+ companies",
-    bg: "#f9dfae",
-    img: "/assets/char-recruitment.png",
+    img: "/assets/searching.png",
     href: "/services/recruitment",
   },
   {
-    rating: "★ 5.0",
     category: "Career Coaching",
     title: "1:1 Coaching & Interview Prep",
     description:
       "Direct, hands-on coaching that takes you from application to offer. Resume reviews, mock interviews, placement support.",
     stat: "5,000+ coached",
-    bg: "#dcd6f7",
-    img: "/assets/char-career.png",
+    img: "/assets/coaching.png",
     href: "/services/career-development",
-  },
-  {
-    rating: "★ 4.9",
-    category: "Staff Aug",
-    title: "Flexible Staff Augmentation",
-    description:
-      "Scale your team instantly with pre-vetted specialists who integrate seamlessly into your existing workflow.",
-    stat: "24/7 support",
-    bg: "#c9e9d3",
-    img: "/assets/char-staffaug.png",
-    href: "/services/recruitment",
   },
 ];
 
@@ -85,24 +68,18 @@ function CardPanel({
             order: 1,
             borderRadius: 28,
             overflow: "hidden",
-            background: card.bg,
             aspectRatio: "1 / 1",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            boxShadow: "0 24px 60px rgba(0,0,0,0.18)",
             position: "relative",
-            transition: "transform 0.35s ease, box-shadow 0.35s ease",
+            transition: "transform 0.35s ease",
           }}
           onMouseEnter={(e) => {
             (e.currentTarget as HTMLElement).style.transform = "scale(1.025)";
-            (e.currentTarget as HTMLElement).style.boxShadow =
-              "0 32px 80px rgba(0,0,0,0.22)";
           }}
           onMouseLeave={(e) => {
             (e.currentTarget as HTMLElement).style.transform = "scale(1)";
-            (e.currentTarget as HTMLElement).style.boxShadow =
-              "0 24px 60px rgba(0,0,0,0.18)";
           }}
         >
           <img
@@ -116,23 +93,6 @@ function CardPanel({
               objectPosition: "bottom center",
             }}
           />
-          <span
-            className="specialty-badge"
-            style={{
-              position: "absolute",
-              top: 20,
-              right: 20,
-              background: "#fff",
-              color: "#1c1c1c",
-              borderRadius: 100,
-              padding: "8px 16px",
-              fontSize: 13,
-              fontWeight: 800,
-              boxShadow: "0 4px 20px rgba(0,0,0,0.14)",
-            }}
-          >
-            {card.rating}
-          </span>
         </div>
 
         <div
@@ -271,7 +231,6 @@ export function SpecialtyScroll() {
         });
 
         const charImg = el.querySelector(".specialty-char-img");
-        const badge = el.querySelector(".specialty-badge");
         if (charImg) {
           gsap.to(charImg, {
             y: -14,
@@ -280,16 +239,6 @@ export function SpecialtyScroll() {
             yoyo: true,
             ease: "sine.inOut",
             delay: i * 0.2,
-          });
-        }
-        if (badge) {
-          gsap.to(badge, {
-            y: 6,
-            duration: 2.3 + i * 0.2,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            delay: i * 0.15,
           });
         }
       });
@@ -359,7 +308,7 @@ export function SpecialtyScroll() {
   }, []);
 
   return (
-    <div ref={outerRef} style={{ position: "relative" }}>
+    <section ref={outerRef} style={{ position: "relative" }}>
       <div
         ref={stickyRef}
         style={{
@@ -400,7 +349,7 @@ export function SpecialtyScroll() {
               maxWidth: 560,
             }}
           >
-            Four specialized models built for your exact hiring goals
+            Three specialized models built for your exact hiring goals
           </h2>
         </div>
 
@@ -410,6 +359,6 @@ export function SpecialtyScroll() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

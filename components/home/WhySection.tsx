@@ -112,7 +112,7 @@ export function WhySection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="why-section" style={{ padding: "100px 28px" }}>
+    <section ref={sectionRef} className="why-section" style={{ padding: "100px 28px", overflow: "hidden" }}>
       <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 12px" }}>
         {/* Heading */}
         <div ref={headingRef} style={{ opacity: 0, marginBottom: 48 }}>
