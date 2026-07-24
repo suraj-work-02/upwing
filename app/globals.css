@@ -811,42 +811,78 @@ a:hover {
   align-items: center;
 }
 
+/* Desktop: image on the right with square aspect ratio */
+.specialty-panel-image {
+  order: 1;
+  aspect-ratio: 1 / 1;
+}
+
+/* Stat chip link hover */
+.specialty-stat-link:hover,
+.specialty-stat-link:active {
+  background: rgba(255, 107, 87, 0.15) !important;
+  border-color: rgba(255, 107, 87, 0.5) !important;
+  transform: translateY(-1px) !important;
+}
+
 @media (max-width: 768px) {
   .specialty-sticky {
     padding-top: 62px !important;
   }
 
+  /* On mobile: flex column — image on top, text below */
   .specialty-panel-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    height: 100% !important;
   }
 
+  /* Image occupies the top ~42% of the card */
   .specialty-panel-image {
-    max-width: 160px !important;
-    margin: 0 auto !important;
-    aspect-ratio: 1 / 1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 42vh !important;
+    aspect-ratio: unset !important;
+    border-radius: 0 !important;
+    order: 0 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .specialty-char-img {
+    width: 80% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+  }
+
+  /* Text content fills remaining space, no inner scroll */
+  .specialty-panel-grid > div:last-child {
+    flex: 1 !important;
+    order: 1 !important;
+    padding: 16px 0 0 !important;
+    overflow: hidden !important;
   }
 
   .specialty-scroll-header {
     padding: 16px 20px 0 !important;
   }
 
-  /* Make card panel scrollable on small screens so nothing gets cut */
+  /* Remove overflow-y so inner scroll doesn't fight the GSAP hijack */
   .specialty-card-panel {
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden !important;
     align-items: flex-start !important;
-    padding: 0 20px 24px !important;
+    padding: 0 20px 16px !important;
   }
 }
 
 @media (max-width: 480px) {
-  .specialty-panel-grid {
-    gap: 10px;
+  .specialty-panel-image {
+    height: 38vh !important;
   }
 
-  .specialty-panel-image {
-    max-width: 140px !important;
+  .specialty-char-img {
+    width: 75% !important;
   }
 }
 

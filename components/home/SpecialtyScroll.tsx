@@ -65,10 +65,8 @@ function CardPanel({
         <div
           className="specialty-panel-image"
           style={{
-            order: 1,
             borderRadius: 28,
             overflow: "hidden",
-            aspectRatio: "1 / 1",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -145,62 +143,40 @@ function CardPanel({
             {card.description}
           </p>
 
-          <div
+          <Link
+            href={card.href}
+            className="specialty-stat-link"
             style={{
-              display: "flex",
+              display: "inline-flex",
               alignItems: "center",
               gap: 10,
-              fontSize: 16,
+              fontSize: 15,
               fontWeight: 700,
+              color: "inherit",
+              textDecoration: "none",
+              background: "rgba(255,107,87,0.08)",
+              border: "1px solid rgba(255,107,87,0.25)",
+              borderRadius: 100,
+              padding: "8px 16px 8px 12px",
+              width: "fit-content",
+              transition:
+                "background 0.2s ease, border-color 0.2s ease, transform 0.2s ease",
             }}
           >
             <span
               style={{
-                width: 10,
-                height: 10,
+                width: 8,
+                height: 8,
                 borderRadius: "50%",
                 background: "#ff6b57",
                 display: "inline-block",
                 flexShrink: 0,
-                boxShadow: "0 0 10px rgba(255,107,87,0.6)",
+                boxShadow: "0 0 8px rgba(255,107,87,0.7)",
               }}
             />
             {card.stat}
-          </div>
-
-          <div style={{ marginTop: 6 }}>
-            <Link
-              href={card.href}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                background: "#fff",
-                color: "#1c1c1c",
-                borderRadius: 100,
-                padding: "14px 28px",
-                fontWeight: 800,
-                fontSize: 14,
-                width: "fit-content",
-                textDecoration: "none",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.12)",
-                transition: "transform 0.2s ease, box-shadow 0.2s ease",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.transform =
-                  "scale(1.04)";
-                (e.currentTarget as HTMLElement).style.boxShadow =
-                  "0 8px 30px rgba(0,0,0,0.18)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "scale(1)";
-                (e.currentTarget as HTMLElement).style.boxShadow =
-                  "0 4px 20px rgba(0,0,0,0.12)";
-              }}
-            >
-              Learn more →
-            </Link>
-          </div>
+            <span style={{ fontSize: 13, opacity: 0.7, marginLeft: 2 }}>→</span>
+          </Link>
         </div>
       </div>
     </div>
