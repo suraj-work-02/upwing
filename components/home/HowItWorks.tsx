@@ -137,17 +137,29 @@ export function HowItWorks() {
         });
       }
 
-      /* 3. Cards fly in one-by-one */
+      /* 3. Cards on the SAME scroll timeline as the path —
+            they appear/disappear in perfect sync with the path draw.
+            Position each card at i/steps.length through the timeline. */
+      const cardTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: wrapperRef.current,
+          start: "top 72%",
+          end: "bottom 52%",
+          scrub: 1.2,
+        },
+      });
+
       cardRefs.current.forEach((card, i) => {
         if (!card) return;
         const isLeft = steps[i].side === "left";
-        gsap.fromTo(
+        // Each card occupies 0.18 units of the timeline, starting at i * 0.25
+        cardTl.fromTo(
           card,
           {
             opacity: 0,
             x: isLeft ? -60 : 60,
             y: 18,
-            scale: 0.9,
+            scale: 0.92,
             rotation: isLeft ? -4 : 4,
           },
           {
@@ -156,14 +168,10 @@ export function HowItWorks() {
             y: 0,
             scale: 1,
             rotation: 0,
-            duration: 0.8,
-            ease: "back.out(1.7)",
-            scrollTrigger: {
-              trigger: card,
-              start: "center 70%",
-              toggleActions: "play none none none",
-            },
+            ease: "power2.out",
+            duration: 0.18,
           },
+          i * 0.25, // timeline position: 0, 0.25, 0.5, 0.75
         );
       });
     }, sectionRef);
@@ -172,7 +180,11 @@ export function HowItWorks() {
   }, [svgPath]);
 
   return (
-    <section ref={sectionRef} className="hiw-section" style={{ padding: "100px 28px", overflow: "hidden" }}>
+    <section
+      ref={sectionRef}
+      className="hiw-section"
+      style={{ padding: "100px 28px", overflow: "hidden" }}
+    >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         {/* Heading */}
         <div
