@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 import { useRef, useLayoutEffect, useState } from "react";
 import gsap from "gsap";
@@ -13,6 +14,7 @@ const steps = [
     desc: 'We learn your goals, timeline and what "right fit" means for you.',
     bg: "#f7c9c2",
     side: "left" as const,
+    img: "/assets/discovery.png",
   },
   {
     num: "02",
@@ -20,6 +22,7 @@ const steps = [
     desc: "Curated shortlist of roles or candidates within days, not weeks.",
     bg: "#f9dfae",
     side: "right" as const,
+    img: "/assets/matching.png",
   },
   {
     num: "03",
@@ -27,6 +30,7 @@ const steps = [
     desc: "We coordinate scheduling, prep and feedback loops end to end.",
     bg: "#dcd6f7",
     side: "left" as const,
+    img: "/assets/interviews.png",
   },
   {
     num: "04",
@@ -34,6 +38,7 @@ const steps = [
     desc: "We stay engaged through onboarding and beyond.",
     bg: "#c9e9d3",
     side: "right" as const,
+    img: "/assets/placement.png",
   },
 ];
 
@@ -277,52 +282,74 @@ export function HowItWorks() {
                 style={{
                   background: step.bg,
                   width: "100%",
-                  maxWidth: 320,
+                  maxWidth: 360,
                   color: "#1c1c1c",
                   opacity: 0,
                   willChange: "transform, opacity",
-                  padding: "26px 28px",
+                  padding: "28px 22px",
                   borderRadius: 22,
                   border: "1px solid rgba(0,0,0,0.06)",
                   boxShadow: "0 8px 24px rgba(0,0,0,0.18)",
                   position: "relative",
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 18,
                 }}
               >
+                {/* Step number badge */}
                 <div
                   style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: "50%",
-                    background: "#fff",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    position: "absolute",
+                    top: 12,
+                    right: 14,
+                    fontSize: 10,
                     fontWeight: 800,
-                    fontSize: 13,
-                    color: "#1c1c1c",
-                    marginBottom: 16,
-                    boxShadow: "0 3px 12px rgba(0,0,0,0.1)",
-                    border: `2px solid ${step.bg}`,
-                    outline: "2px solid #1c1c1c15",
+                    color: "rgba(0,0,0,0.3)",
+                    letterSpacing: "0.06em",
                   }}
                 >
                   {step.num}
                 </div>
-                <h4
-                  style={{ margin: "0 0 6px", fontSize: 17, fontWeight: 800 }}
-                >
-                  {step.title}
-                </h4>
-                <p
-                  style={{
-                    margin: 0,
-                    fontSize: 13,
-                    opacity: 0.7,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {step.desc}
-                </p>
+
+                {/* Icon — left side */}
+                <div style={{ flexShrink: 0 }}>
+                  <Image
+                    src={step.img}
+                    alt={step.title}
+                    width={110}
+                    height={110}
+                    style={{
+                      objectFit: "contain",
+                      filter: "drop-shadow(0 6px 14px rgba(0,0,0,0.18))",
+                      display: "block",
+                    }}
+                  />
+                </div>
+
+                {/* Text — right side */}
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <h4
+                    style={{
+                      margin: "0 0 5px",
+                      fontSize: 16,
+                      fontWeight: 800,
+                      lineHeight: 1.25,
+                    }}
+                  >
+                    {step.title}
+                  </h4>
+                  <p
+                    style={{
+                      margin: 0,
+                      fontSize: 12.5,
+                      opacity: 0.68,
+                      lineHeight: 1.55,
+                    }}
+                  >
+                    {step.desc}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
