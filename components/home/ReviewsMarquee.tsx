@@ -147,7 +147,7 @@ export function ReviewsMarquee() {
             marginBottom: 6,
           }}
         >
-          Real Outcomes
+          Sample Testimonials
         </div>
         <h2
           style={{
@@ -155,11 +155,21 @@ export function ReviewsMarquee() {
             fontWeight: 800,
             letterSpacing: "-0.02em",
             maxWidth: 560,
-            margin: "0 0 26px",
+            margin: "0 0 10px",
           }}
         >
-          Candidates placed. Companies staffed.
+          A better experience, on both sides
         </h2>
+        <p
+          style={{
+            margin: "0 0 26px",
+            fontSize: 14,
+            color: "var(--text-secondary)",
+            lineHeight: 1.6,
+          }}
+        >
+          Fictional stories and sample profiles created for this concept.
+        </p>
 
         {/* Row 1 - scrolls left */}
         <div className="uw-marquee" style={{ marginBottom: 16 }}>

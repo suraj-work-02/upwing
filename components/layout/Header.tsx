@@ -93,6 +93,7 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
+            className="inline-flex items-center gap-3"
             style={{
               fontWeight: 800,
               fontSize: 20,
@@ -102,7 +103,10 @@ export function Header() {
             }}
             onClick={() => setOpen(false)}
           >
-            Up<span style={{ color: "#ff6b57" }}>Wing</span>
+            <span>
+              Up<span style={{ color: "#ff6b57" }}>Wing</span>
+            </span>
+            <span className="concept-badge">Portfolio concept</span>
           </Link>
 
           {/* Nav links */}
@@ -290,23 +294,13 @@ export function Header() {
             })}
           </div>
 
-          {/* CTA buttons */}
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <Link
-              href="/contact"
-              className="uw-pill uw-glass"
-              style={{ padding: "10px 20px", fontSize: 13 }}
-            >
-              Log In
-            </Link>
-            <Link
-              href="/contact"
-              className="uw-pill uw-btn-coral"
-              style={{ padding: "10px 20px", fontSize: 13 }}
-            >
-              Book a Call
-            </Link>
-          </div>
+          <Link
+            href="/contact"
+            className="uw-pill uw-btn-coral"
+            style={{ padding: "10px 20px", fontSize: 13 }}
+          >
+            Book a Call
+          </Link>
         </div>
 
         {/* ── Mobile ── */}
@@ -333,6 +327,7 @@ export function Header() {
           >
             <Link
               href="/"
+              className="inline-flex items-center gap-3"
               style={{
                 fontWeight: 800,
                 fontSize: 18,
@@ -341,7 +336,10 @@ export function Header() {
               }}
               onClick={() => setOpen(false)}
             >
-              Up<span style={{ color: "#ff6b57" }}>Wing</span>
+              <span>
+                Up<span style={{ color: "#ff6b57" }}>Wing</span>
+              </span>
+              <span className="concept-badge">Portfolio concept</span>
             </Link>
 
             <button

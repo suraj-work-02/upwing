@@ -31,7 +31,11 @@ export default function RootLayout({
       className={`${plusJakartaSans.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col bg-bg font-sans text-text">
+      {/* Browser extensions can inject body attributes before hydration. */}
+      <body
+        className="flex min-h-full flex-col bg-bg font-sans text-text"
+        suppressHydrationWarning
+      >
         <SmoothScroll>
           <Header />
           <main className="flex-1">{children}</main>
@@ -41,4 +45,3 @@ export default function RootLayout({
     </html>
   );
 }
-

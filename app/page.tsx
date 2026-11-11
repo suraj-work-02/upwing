@@ -1,6 +1,6 @@
 import { Hero } from "@/components/home/Hero";
 import { TrustBar } from "@/components/home/TrustBar";
-import { ServicesPreview } from "@/components/home/ServicesPreview";
+import { SpecialtyScroll } from "@/components/home/SpecialtyScroll";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { WhySection } from "@/components/home/WhySection";
 import { ReviewsMarquee } from "@/components/home/ReviewsMarquee";
@@ -11,7 +11,7 @@ export default function HomePage() {
     <>
       <Hero />
       <TrustBar />
-      <ServicesPreview />
+      <SpecialtyScroll />
       <HowItWorks />
       <WhySection />
       <ReviewsMarquee />

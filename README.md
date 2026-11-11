@@ -1,6 +1,11 @@
 # Upwia
 
-Production marketing site for Upwia - recruitment and career development.
+A freelance portfolio concept for UpWing, a fictional recruitment and career
+development brand.
+
+Company names, statistics, testimonials, history, and contact details are
+illustrative. The contact form demonstrates validation and confirmation states;
+it does not send messages.
 
 ## Getting started
 

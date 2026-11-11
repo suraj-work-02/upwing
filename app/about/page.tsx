@@ -250,7 +250,7 @@ export default function AboutPage() {
                 marginBottom: 6,
               }}
             >
-              Our Journey
+              Illustrative Timeline
             </div>
             <h2
               style={{
@@ -258,11 +258,21 @@ export default function AboutPage() {
                 fontWeight: 800,
                 letterSpacing: "-0.02em",
                 maxWidth: 600,
-                margin: "0 0 34px",
+                margin: "0 0 12px",
               }}
             >
-              Built over a decade of continuous growth
+              An imagined decade of growth
             </h2>
+            <p
+              style={{
+                margin: "0 0 34px",
+                fontSize: 14,
+                color: "var(--text-secondary)",
+                lineHeight: 1.6,
+              }}
+            >
+              This fictional company history is part of the UpWing concept.
+            </p>
           </FadeIn>
 
           <FadeIn delay={100}>

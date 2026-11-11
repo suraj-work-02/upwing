@@ -2,13 +2,13 @@ export const site = {
   name: "UpWing",
   tagline: "Hire smarter. Get hired faster.",
   description:
-    "UpWing connects companies with the talent they need and helps professionals land roles that move careers forward.",
+    "A recruitment and career development website concept, created as a freelance portfolio project.",
   contact: {
-    email: "hello@upwing.com",
-    sales: "sales@upwing.com",
+    email: "hello@upwing.example",
+    sales: "sales@upwing.example",
     phone: "+1 (555) 010-2040",
     phoneHref: "tel:+15550102040",
-    address: "30 N Gould St Ste R, Sheridan, WY 82801",
+    address: "123 Example Avenue, New York, NY 10001",
   },
   stats: [
     { value: "500+", label: "Companies served" },

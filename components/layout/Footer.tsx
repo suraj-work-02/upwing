@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { site } from "@/content/site";
 
 const footerLinks = {
   services: [
@@ -64,7 +65,9 @@ export function Footer() {
               Hire smarter. Get hired faster. Staffing, recruitment and career
               development, built around real outcomes.
             </p>
-            <div style={{ fontSize: 13, opacity: 0.7 }}>hello@upwing.com</div>
+            <div style={{ fontSize: 13, opacity: 0.7 }}>
+              {site.contact.email}
+            </div>
           </div>
 
           {/* Services */}
@@ -158,6 +161,19 @@ export function Footer() {
           </div>
         </div>
 
+        <p
+          style={{
+            maxWidth: 720,
+            margin: "0 0 24px",
+            fontSize: 13,
+            color: "var(--text-secondary)",
+            lineHeight: 1.6,
+          }}
+        >
+          UpWing is a fictional brand created for a freelance portfolio. Company
+          names, statistics, testimonials, and history are illustrative.
+        </p>
+
         {/* Bottom bar */}
         <div
           style={{
@@ -173,7 +189,7 @@ export function Footer() {
           }}
         >
           <div>© {new Date().getFullYear()} UpWing. All rights reserved.</div>
-          <div>Serving clients across the United States</div>
+          <div>Independent portfolio concept</div>
         </div>
       </div>
 

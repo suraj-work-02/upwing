@@ -184,6 +184,21 @@ a:hover {
 
 /* ─── Pill badges ─── */
 
+.concept-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 6px 9px;
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
 .uw-pill {
   display: inline-flex;
   align-items: center;
@@ -800,6 +815,10 @@ a:hover {
     padding: 120px 20px 60px !important;
     min-height: unset !important;
   }
+
+  .contact-section {
+    padding: 40px 20px 64px !important;
+  }
 }
 
 /* ─── Responsive: SpecialtyScroll card panels ─── */
@@ -817,9 +836,9 @@ a:hover {
   aspect-ratio: 1 / 1;
 }
 
-/* Stat chip link hover */
-.specialty-stat-link:hover,
-.specialty-stat-link:active {
+/* Specialty service links */
+.specialty-link:hover,
+.specialty-link:active {
   background: rgba(255, 107, 87, 0.15) !important;
   border-color: rgba(255, 107, 87, 0.5) !important;
   transform: translateY(-1px) !important;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 
 type FormState = {
@@ -21,6 +21,15 @@ export function ContactForm() {
   const [form, setForm] = useState<FormState>(initial);
   const [errors, setErrors] = useState<Partial<FormState>>({});
   const [submitted, setSubmitted] = useState(false);
+  const confirmationRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const confirmation = confirmationRef.current;
+    if (submitted && confirmation) {
+      confirmation.focus({ preventScroll: true });
+      confirmation.scrollIntoView({ block: "center", behavior: "instant" });
+    }
+  }, [submitted]);
 
   function validate(values: FormState) {
     const next: Partial<FormState> = {};
@@ -38,22 +47,37 @@ export function ContactForm() {
     event.preventDefault();
     const nextErrors = validate(form);
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length > 0) return;
+    const firstInvalidField = Object.keys(nextErrors)[0];
+    if (firstInvalidField) {
+      const field = event.currentTarget.elements.namedItem(firstInvalidField);
+      if (field instanceof HTMLElement) {
+        field.focus({ preventScroll: true });
+        field.scrollIntoView({ block: "center", behavior: "instant" });
+      }
+      return;
+    }
     setSubmitted(true);
   }
 
   if (submitted) {
     return (
       <div
-        className="uw-neu"
+        ref={confirmationRef}
+        className="uw-neu outline-none"
+        role="status"
+        tabIndex={-1}
+        aria-labelledby="demo-complete-title"
         style={{ borderRadius: 24, padding: "36px 32px" }}
       >
-        <h2 style={{ fontSize: 28, fontWeight: 800, margin: "0 0 12px" }}>
-          Message received
+        <h2
+          id="demo-complete-title"
+          style={{ fontSize: 28, fontWeight: 800, margin: "0 0 12px" }}
+        >
+          Demo complete
         </h2>
         <p style={{ fontSize: 15, opacity: 0.75, lineHeight: 1.6 }}>
-          Thanks for reaching out. This is a demo form-no email was sent. In
-          production, your message would go to our team.
+          Thanks for trying the form. This was a preview only; no message was
+          sent.
         </p>
         <button
           type="button"
@@ -61,10 +85,11 @@ export function ContactForm() {
           style={{ marginTop: 24, padding: "12px 24px", fontSize: 14 }}
           onClick={() => {
             setForm(initial);
+            setErrors({});
             setSubmitted(false);
           }}
         >
-          Send another message
+          Try again
         </button>
       </div>
     );
@@ -74,15 +99,37 @@ export function ContactForm() {
     <form
       onSubmit={onSubmit}
       className="uw-neu"
+      aria-labelledby="contact-form-title"
+      aria-describedby="demo-form-note"
       style={{ borderRadius: 24, padding: "36px 32px" }}
       noValidate
     >
       <div className="grid gap-6">
+        <div>
+          <h2
+            id="contact-form-title"
+            style={{ fontSize: 24, fontWeight: 800, margin: "0 0 14px" }}
+          >
+            Try the contact form
+          </h2>
+          <p
+            id="demo-form-note"
+            className="rounded-xl border border-accent/20 bg-accent/10 px-4 py-3 text-sm leading-relaxed text-text-secondary"
+          >
+            <strong className="text-accent">Demo only.</strong> Use sample
+            details to explore the form. No message will be sent.
+          </p>
+        </div>
+
         <Field label="Name" error={errors.name} htmlFor="name">
           <input
             id="name"
             name="name"
             autoComplete="name"
+            placeholder="Alex Morgan"
+            required
+            aria-invalid={Boolean(errors.name)}
+            aria-describedby={errors.name ? "name-error" : undefined}
             value={form.name}
             onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
             className={inputClass(Boolean(errors.name))}
@@ -95,6 +142,10 @@ export function ContactForm() {
             name="email"
             type="email"
             autoComplete="email"
+            placeholder="alex@example.com"
+            required
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? "email-error" : undefined}
             value={form.email}
             onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
             className={inputClass(Boolean(errors.email))}
@@ -140,6 +191,10 @@ export function ContactForm() {
             id="message"
             name="message"
             rows={5}
+            placeholder="Tell us about a sample hiring or career goal."
+            required
+            aria-invalid={Boolean(errors.message)}
+            aria-describedby={errors.message ? "message-error" : undefined}
             value={form.message}
             onChange={(e) =>
               setForm((f) => ({ ...f, message: e.target.value }))
@@ -159,7 +214,7 @@ export function ContactForm() {
               width: "auto",
             }}
           >
-            Send message
+            Submit demo
           </button>
         </div>
       </div>
@@ -184,7 +239,15 @@ function Field({
         {label}
       </label>
       <div className="mt-2">{children}</div>
-      {error ? <p className="mt-1.5 text-sm text-red-400">{error}</p> : null}
+      {error ? (
+        <p
+          id={`${htmlFor}-error`}
+          role="alert"
+          className="mt-1.5 text-sm text-red-400"
+        >
+          {error}
+        </p>
+      ) : null}
     </div>
   );
 }

@@ -16,8 +16,8 @@ const stats = [
 const whyItems = [
   {
     num: "01",
-    title: "Proven Track Record",
-    desc: "500+ engagements with documented, measurable outcomes.",
+    title: "Focused Partnerships",
+    desc: "A dedicated point of contact from the first conversation onward.",
   },
   {
     num: "02",
@@ -112,7 +112,11 @@ export function WhySection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="why-section" style={{ padding: "100px 28px", overflow: "hidden" }}>
+    <section
+      ref={sectionRef}
+      className="why-section"
+      style={{ padding: "100px 28px", overflow: "hidden" }}
+    >
       <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 12px" }}>
         {/* Heading */}
         <div ref={headingRef} style={{ opacity: 0, marginBottom: 48 }}>
@@ -135,8 +139,19 @@ export function WhySection() {
               margin: 0,
             }}
           >
-            Results that show up on paper, not talking points
+            Built around people and progress
           </h2>
+          <p
+            style={{
+              margin: "12px 0 0",
+              fontSize: 14,
+              color: "var(--text-secondary)",
+              lineHeight: 1.6,
+            }}
+          >
+            Illustrative figures and service benefits for this portfolio
+            concept.
+          </p>
         </div>
 
         {/* Animated stat counters */}

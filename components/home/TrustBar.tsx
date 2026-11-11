@@ -31,8 +31,7 @@ export function TrustBar() {
             marginBottom: 16,
           }}
         >
-          Trusted by 500+ companies, from fast-growing startups to enterprise
-          teams
+          Example brands created for this concept
         </div>
         <div className="uw-marquee">
           <div className="uw-track uw-track-l">

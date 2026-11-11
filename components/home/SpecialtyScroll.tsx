@@ -13,7 +13,7 @@ const cards = [
     title: "Contract & Contract-to-Hire",
     description:
       "Flexible workforce models structured around your timeline. From short-term contracts to full-time conversions.",
-    stat: "1,200+ placed",
+    cta: "Explore Staffing",
     img: "/assets/contract.png",
     href: "/services/recruitment",
   },
@@ -22,7 +22,7 @@ const cards = [
     title: "Talent Sourcing & Market Mapping",
     description:
       "End-to-end sourcing that moves faster than traditional hiring, without cutting corners on quality.",
-    stat: "500+ companies",
+    cta: "Explore Recruitment",
     img: "/assets/searching.png",
     href: "/services/recruitment",
   },
@@ -31,7 +31,7 @@ const cards = [
     title: "1:1 Coaching & Interview Prep",
     description:
       "Direct, hands-on coaching that takes you from application to offer. Resume reviews, mock interviews, placement support.",
-    stat: "5,000+ coached",
+    cta: "Explore Career Coaching",
     img: "/assets/coaching.png",
     href: "/services/career-development",
   },
@@ -145,7 +145,7 @@ function CardPanel({
 
           <Link
             href={card.href}
-            className="specialty-stat-link"
+            className="specialty-link"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -164,6 +164,7 @@ function CardPanel({
             }}
           >
             <span
+              aria-hidden="true"
               style={{
                 width: 8,
                 height: 8,
@@ -174,8 +175,13 @@ function CardPanel({
                 boxShadow: "0 0 8px rgba(255,107,87,0.7)",
               }}
             />
-            {card.stat}
-            <span style={{ fontSize: 13, opacity: 0.7, marginLeft: 2 }}>→</span>
+            {card.cta}
+            <span
+              aria-hidden="true"
+              style={{ fontSize: 13, opacity: 0.7, marginLeft: 2 }}
+            >
+              →
+            </span>
           </Link>
         </div>
       </div>

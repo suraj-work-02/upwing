@@ -7,7 +7,7 @@ import { Mail, Phone, MapPin } from "@/components/ui/Icons";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Schedule a consultation or reach the UpWing team.",
+  description: "Try the contact form in this UpWing portfolio concept.",
 };
 
 export default function ContactPage() {
@@ -16,15 +16,19 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Let's talk about your next hire or your next role"
-        description="Tell us what you are working on. We will follow up with a clear next step."
+        description="Explore the inquiry experience for companies and job seekers."
       />
 
-      <section style={{ padding: "80px 28px 120px" }}>
+      <section
+        className="contact-section"
+        style={{ padding: "80px 28px 120px" }}
+      >
         <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 12px" }}>
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              gridTemplateColumns:
+                "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
               gap: 48,
               alignItems: "start",
             }}
@@ -43,18 +47,28 @@ export default function ContactPage() {
                     marginBottom: 6,
                   }}
                 >
-                  Direct Channels
+                  Contact Preview
                 </div>
                 <h2
                   style={{
                     fontSize: "clamp(24px, 3vw, 34px)",
                     fontWeight: 800,
                     letterSpacing: "-0.02em",
-                    margin: "0 0 28px",
+                    margin: "0 0 12px",
                   }}
                 >
-                  Reach us directly
+                  Example contact details
                 </h2>
+                <p
+                  style={{
+                    margin: "0 0 28px",
+                    fontSize: 14,
+                    color: "var(--text-secondary)",
+                    lineHeight: 1.6,
+                  }}
+                >
+                  Fictional details for this portfolio concept.
+                </p>
 
                 <div
                   style={{ display: "flex", flexDirection: "column", gap: 16 }}
@@ -172,18 +186,6 @@ export default function ContactPage() {
                     </div>
                   </div>
                 </div>
-
-                <p
-                  style={{
-                    marginTop: 32,
-                    fontSize: 13,
-                    opacity: 0.5,
-                    lineHeight: 1.5,
-                  }}
-                >
-                  Dummy contact details for demo purposes. Replace with real
-                  business information before launch.
-                </p>
               </div>
             </FadeIn>
           </div>

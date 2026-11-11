@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
-import { SpecialtyScroll } from "@/components/home/SpecialtyScroll";
 
 export function Hero() {
   const pillRef = useRef<HTMLDivElement>(null);
@@ -77,7 +76,7 @@ export function Hero() {
           <div className="hero-grid">
             {/* Left: main content */}
             <div>
-              {/* Trust pill */}
+              {/* Service focus */}
               <div
                 ref={pillRef}
                 className="uw-pill uw-glass"
@@ -91,7 +90,7 @@ export function Hero() {
                   opacity: 0,
                 }}
               >
-                ● Trusted by 500+ companies
+                ● Recruitment & career services
               </div>
 
               {/* H1 */}
@@ -189,9 +188,6 @@ export function Hero() {
           </div>
         </div>
       </section>
-
-      {/* 2. Our Specialty Section - GSAP scroll-driven */}
-      <SpecialtyScroll />
     </>
   );
 }
